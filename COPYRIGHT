@@ -1,0 +1,13 @@
+This resource is based on Testaross/chameleonpaint
+https://github.com/Testaross/chameleonpaint
+
+That project is licensed under the GNU General Public License v3.0.
+This modified work is therefore also licensed under GPL-3.0-or-later.
+See LICENSE for the full license text.
+
+Original chameleonpaint credits (from Testaross/chameleonpaint):
+- Testaross — ox_inventory item spray implementation
+- MrZedo (https://github.com/MrZedo/Cameleon-Color) — information and assets
+- Wildbrick142 — chameleon paint ramps / DLC pack
+- Disquse — loading gradient textures in FiveM
+- Rockstar Games — original shaders and colour system

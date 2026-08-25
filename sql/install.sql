@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS `chameleon_vehicle_paints` (
+    `plate` VARCHAR(16) NOT NULL,
+    `plate_key` VARCHAR(16) NOT NULL,
+    `color` INT NOT NULL,
+    `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`plate_key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

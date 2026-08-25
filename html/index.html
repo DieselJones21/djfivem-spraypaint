@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>djfivem-spraypaint</title>
+</head>
+<body>
+    <script>
+        window.addEventListener('message', (event) => {
+            const data = event.data || {};
+            if (data.action !== 'play' || !data.file) return;
+            const audio = new Audio(data.file);
+            audio.volume = typeof data.volume === 'number' ? data.volume : 0.45;
+            audio.play().catch(() => {});
+        });
+    </script>
+</body>
+</html>
