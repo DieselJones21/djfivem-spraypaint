@@ -1,8 +1,8 @@
 Config = {}
 
--- Gamebuild 2699+ uses colour indexes 223-238 for these ramps.
--- If paints look black / solid, set this to true (indexes 161-176, older builds).
-Config.UseLegacyIndexes = false
+-- Colour indexes match GTA (161-242) on gamebuild 2699+.
+-- 161-222 = 62 official Rockstar chameleon paints
+-- 223-242 = 20 custom YKTA paints from the GTA5-Mods pack
 
 -- Use the spray while sitting in the vehicle (what most servers do).
 Config.AllowInsideVehicle = true

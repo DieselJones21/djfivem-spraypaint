@@ -242,9 +242,9 @@ CreateThread(function()
 end)
 
 lib.addCommand('givechameleon', {
-    help = 'Give a numbered chameleon spray (161-176)',
+    help = 'Give a numbered chameleon spray (161-242)',
     params = {
-        { name = 'number', type = 'number', help = 'Paint number 161-176' },
+        { name = 'number', type = 'number', help = 'Paint number 161-242' },
         { name = 'target', type = 'playerId', optional = true, help = 'Player id (default: you)' },
         { name = 'count', type = 'number', optional = true, help = 'Amount (default: 1)' },
     },
@@ -256,10 +256,11 @@ lib.addCommand('givechameleon', {
 
     local paint = GetPaintByNumber(args.number)
     if not paint then
+        local msg = 'Invalid paint number. Use 161-242.'
         if source == 0 then
-            print('Invalid paint number. Use 161-176.')
+            print(msg)
         else
-            notify(source, 'Invalid paint number. Use 161-176.', 'error')
+            notify(source, msg, 'error')
         end
         return
     end
@@ -278,18 +279,17 @@ lib.addCommand('givechameleon', {
 end)
 
 lib.addCommand('chameleonpaints', {
-    help = 'List numbered chameleon spray items',
+    help = 'List numbered chameleon spray items (161-242)',
 }, function(source)
-    local lines = {}
     for i = 1, #ChameleonPaints do
         local paint = ChameleonPaints[i]
-        lines[#lines + 1] = ('#%s %s (%s)'):format(paint.number, paint.label, paint.item)
+        print(('[djfivem-spraypaint] #%s %s (%s)'):format(paint.number, paint.label, paint.item))
     end
-    local text = table.concat(lines, '\n')
+    local msg = '82 chameleon sprays (161-242) printed to the server console. Use /givechameleon [number].'
     if source == 0 then
-        print(text)
+        print(msg)
     else
-        notify(source, text, 'inform')
+        notify(source, msg, 'inform')
     end
 end)
 

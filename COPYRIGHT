@@ -8,6 +8,9 @@ See LICENSE for the full license text.
 Original chameleonpaint credits (from Testaross/chameleonpaint):
 - Testaross — ox_inventory item spray implementation
 - MrZedo (https://github.com/MrZedo/Cameleon-Color) — information and assets
-- Wildbrick142 — chameleon paint ramps / DLC pack
+- Wildbrick142 — chameleon paint ramps / DLC pack (https://www.gta5-mods.com/misc/chameleon-paint-add-on)
 - Disquse — loading gradient textures in FiveM
 - Rockstar Games — original shaders and colour system
+
+Expanded 223-242 ramp meta/ytd also appear in Qbox-project/qbx_customs (GPL-3.0):
+https://github.com/Qbox-project/qbx_customs
