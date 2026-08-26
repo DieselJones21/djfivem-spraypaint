@@ -170,7 +170,7 @@ def write_ox_items() -> None:
                     "		stack = true,",
                     "		close = true,",
                     "		consume = 0,",
-                    f"		description = 'Chameleon spray #{number}. Use in a vehicle to paint it. Paint is saved.',",
+                    f"		description = 'Chameleon spray #{number}. Stand outside, face the vehicle, then use it. Paint is saved.',",
                     "		client = {",
                     f"			image = '{item}.png',",
                     "			export = 'djfivem-spraypaint.chameleonpaint',",
@@ -179,6 +179,24 @@ def write_ox_items() -> None:
                 ]
             )
         )
+    chunks.append(
+        "\n".join(
+            [
+                "	['dono_paint_remover'] = {",
+                "		label = 'Donation Paint Remover',",
+                "		weight = 1,",
+                "		stack = true,",
+                "		close = true,",
+                "		consume = 0,",
+                "		description = 'Donor tool. Stand outside, face a vehicle, and use it to strip chameleon paint.',",
+                "		client = {",
+                "			image = 'dono_paint_remover.png',",
+                "			export = 'djfivem-spraypaint.paintremover',",
+                "		},",
+                "	},",
+            ]
+        )
+    )
     (ROOT / "install" / "ox_inventory_items.lua").write_text("\n".join(chunks) + "\n", encoding="utf-8")
 
 
@@ -195,8 +213,11 @@ def write_qb_items() -> None:
     for number, _code, label, _category in PAINTS:
         item = item_name(number)
         lines.append(
-            f"    {item} = {{ name = '{item}', label = '#{number} {label}', weight = 1, type = 'item', image = '{item}.png', unique = false, useable = true, shouldClose = true, description = 'Chameleon spray #{number}. Use in a vehicle to paint it. Paint is saved.' }},"
+            f"    {item} = {{ name = '{item}', label = '#{number} {label}', weight = 1, type = 'item', image = '{item}.png', unique = false, useable = true, shouldClose = true, description = 'Chameleon spray #{number}. Stand outside, face the vehicle, then use it. Paint is saved.' }},"
         )
+    lines.append(
+        "    dono_paint_remover = { name = 'dono_paint_remover', label = 'Donation Paint Remover', weight = 1, type = 'item', image = 'dono_paint_remover.png', unique = false, useable = true, shouldClose = true, description = 'Donor tool. Stand outside, face a vehicle, and use it to strip chameleon paint.' },"
+    )
     lines += [
         "}",
         "",
@@ -213,6 +234,7 @@ def write_esx_sql() -> None:
     for number, _code, label, _category in PAINTS:
         item = item_name(number)
         rows.append(f"('{item}', '#{number} {label}', 1, 0, 1)")
+    rows.append("('dono_paint_remover', 'Donation Paint Remover', 1, 0, 1)")
     text = (
         "-- ESX item rows (skip this if you use ox_inventory — use ox_inventory_items.lua instead)\n\n"
         "INSERT INTO `items` (`name`, `label`, `weight`, `rare`, `can_remove`) VALUES\n"
@@ -240,6 +262,14 @@ def write_paints_md() -> None:
         for number, code, label in by_cat[key]:
             lines.append(f"| {number} | `chameleonpaint_{number}` | {label} |")
         lines.append("")
+    lines += [
+        "## Donation tool",
+        "",
+        "| Item | Name |",
+        "| --- | --- |",
+        "| `dono_paint_remover` | Donation Paint Remover — face a vehicle and use to strip chameleon paint |",
+        "",
+    ]
     (ROOT / "install" / "PAINTS.md").write_text("\n".join(lines), encoding="utf-8")
 
 
@@ -247,6 +277,7 @@ def copy_icons() -> None:
     dest_dir = ROOT / "install" / "ox_inventory_images"
     dest_dir.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(ICON, dest_dir / "chameleonpaint.png")
+    shutil.copyfile(ICON, dest_dir / "dono_paint_remover.png")
     for number, *_ in PAINTS:
         shutil.copyfile(ICON, dest_dir / f"{item_name(number)}.png")
 
@@ -260,7 +291,7 @@ def main() -> None:
     write_esx_sql()
     write_paints_md()
     copy_icons()
-    print(f"generated {len(PAINTS)} paints")
+    print(f"generated {len(PAINTS)} paints + dono_paint_remover")
 
 
 if __name__ == "__main__":

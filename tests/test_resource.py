@@ -161,10 +161,61 @@ def test_persistence_sql():
     assert "ClearVehicleCustomPrimaryColour" in apply
     assert "SetVehicleColours" in apply
     client = (ROOT / "client" / "main.lua").read_text(encoding="utf-8")
-    assert "AllowInsideVehicle" in client
+    assert "AllowOutsideVehicle" in client
     assert "exports('chameleonpaint'" in client
     server = (ROOT / "server" / "main.lua").read_text(encoding="utf-8")
     assert "161-242" in server
+
+
+def test_facing_math():
+    import math
+
+    def heading_dot(heading, from_x, from_y, to_x, to_y):
+        rad = math.radians(heading)
+        fx = -math.sin(rad)
+        fy = math.cos(rad)
+        dx, dy = to_x - from_x, to_y - from_y
+        length = math.hypot(dx, dy)
+        if length < 0.001:
+            return 1.0
+        return (fx * dx / length) + (fy * dy / length)
+
+    def is_facing(heading, from_x, from_y, to_x, to_y, max_angle=70):
+        return heading_dot(heading, from_x, from_y, to_x, to_y) >= math.cos(math.radians(max_angle))
+
+    assert heading_dot(0, 0, 0, 0, 10) > 0.99
+    assert abs(heading_dot(0, 0, 0, 10, 0)) < 0.01
+    assert is_facing(0, 0, 0, 0, 10, 70) is True
+    assert is_facing(0, 0, 0, 10, 0, 70) is False
+    assert is_facing(180, 0, 10, 0, 0, 70) is True
+    utils = (ROOT / "shared" / "utils.lua").read_text(encoding="utf-8")
+    assert "function IsFacingTarget" in utils
+    assert "function HeadingDotToTarget" in utils
+
+
+def test_remover_and_outside_spray():
+    ox = (ROOT / "install" / "ox_inventory_items.lua").read_text(encoding="utf-8")
+    qb = (ROOT / "install" / "qb-core_items.lua").read_text(encoding="utf-8")
+    esx = (ROOT / "install" / "esx_items.sql").read_text(encoding="utf-8")
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    config = (ROOT / "config.lua").read_text(encoding="utf-8")
+    client = (ROOT / "client" / "main.lua").read_text(encoding="utf-8")
+    persist = (ROOT / "server" / "persist.lua").read_text(encoding="utf-8")
+    server = (ROOT / "server" / "main.lua").read_text(encoding="utf-8")
+    assert ox.count("['dono_paint_remover']") == 1
+    assert "djfivem-spraypaint.paintremover" in ox
+    assert "dono_paint_remover" in qb
+    assert "dono_paint_remover" in esx
+    assert "dono_paint_remover" in readme
+    image = ROOT / "install" / "ox_inventory_images" / "dono_paint_remover.png"
+    assert image.is_file() and image.stat().st_size > 0
+    assert "RequireFacingVehicle" in config
+    assert "prop_cs_spray_can" in client
+    assert "notFacing" in client
+    assert "exports('paintremover'" in client
+    assert "ClearChameleonPaint" in persist
+    assert "djfivem-spraypaint:server:remove" in server
+    assert "giveremover" in server
 
 
 def test_labels():
@@ -183,6 +234,8 @@ def main():
         test_color_mode_mapping,
         test_persistence_sql,
         test_labels,
+        test_facing_math,
+        test_remover_and_outside_spray,
     ]
     for test in tests:
         test()

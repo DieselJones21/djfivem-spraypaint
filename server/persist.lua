@@ -34,7 +34,7 @@ end
 function GetSavedColor(plate)
     local key = PlateKey(plate)
     if key == '' then return nil end
-    if cache[key] then return cache[key] end
+    if cache[key] ~= nil then return cache[key] end
 
     local stored = GetResourceKvpString(kvpKey(plate))
     if stored and stored ~= '' then
@@ -99,6 +99,23 @@ function SaveChameleonPaint(plate, color)
     end
     if GetResourceState('es_extended') == 'started' then
         updateOwnedVehicleRow('owned_vehicles', 'vehicle', plate, color)
+    end
+end
+
+function ClearChameleonPaint(plate)
+    local key = PlateKey(plate)
+    if key == '' then return end
+
+    cache[key] = nil
+    DeleteResourceKvp(kvpKey(plate))
+    dbExec('DELETE FROM chameleon_vehicle_paints WHERE plate_key = ?', { key })
+
+    local primary = Config.RemoverDefaultPrimary or 0
+    if GetResourceState('qb-core') == 'started' or GetResourceState('qbx_core') == 'started' then
+        updateOwnedVehicleRow('player_vehicles', 'mods', plate, primary)
+    end
+    if GetResourceState('es_extended') == 'started' then
+        updateOwnedVehicleRow('owned_vehicles', 'vehicle', plate, primary)
     end
 end
 

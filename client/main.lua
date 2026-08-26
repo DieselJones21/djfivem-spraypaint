@@ -32,11 +32,20 @@ local function loadModel(model)
     return HasModelLoaded(model)
 end
 
+local function loadAnimDict(dict)
+    RequestAnimDict(dict)
+    local timeout = GetGameTimer() + 3000
+    while not HasAnimDictLoaded(dict) and GetGameTimer() < timeout do
+        Wait(10)
+    end
+    return HasAnimDictLoaded(dict)
+end
+
 local function attachSprayCan(ped)
     local model = `prop_cs_spray_can`
     if not loadModel(model) then return nil end
     local coords = GetEntityCoords(ped)
-    local prop = CreateObject(model, coords.x, coords.y, coords.z, true, true, false)
+    local prop = CreateObject(model, coords.x, coords.y, coords.z + 0.2, true, true, false)
     AttachEntityToEntity(prop, ped, GetPedBoneIndex(ped, 57005), 0.12, 0.0, -0.04, -70.0, 0.0, -10.0, true, true, false, false, 1, true)
     SetModelAsNoLongerNeeded(model)
     return prop
@@ -47,7 +56,9 @@ local function cleanupProp()
         DeleteObject(sprayProp)
     end
     sprayProp = nil
-    ClearPedTasks(PlayerPedId())
+    local ped = PlayerPedId()
+    ClearPedTasks(ped)
+    ClearPedSecondaryTask(ped)
 end
 
 local function progress(opts)
@@ -58,7 +69,36 @@ local function progress(opts)
     return true
 end
 
-local function resolveTargetVehicle()
+local function isFacingVehicle(ped, vehicle)
+    if not Config.RequireFacingVehicle then return true end
+    local pedCoords = GetEntityCoords(ped)
+    local vehCoords = GetEntityCoords(vehicle)
+    return IsFacingTarget(GetEntityHeading(ped), pedCoords.x, pedCoords.y, vehCoords.x, vehCoords.y, Config.FacingMaxAngle)
+end
+
+local function faceVehicle(ped, vehicle)
+    TaskTurnPedToFaceEntity(ped, vehicle, 800)
+    Wait(700)
+end
+
+local function playSprayParticles(prop, duration)
+    CreateThread(function()
+        RequestNamedPtfxAsset('core')
+        local timeout = GetGameTimer() + 2000
+        while not HasNamedPtfxAssetLoaded('core') and GetGameTimer() < timeout do
+            Wait(10)
+        end
+        local endsAt = GetGameTimer() + (duration or 2000)
+        while sprayProp and DoesEntityExist(prop) and GetGameTimer() < endsAt do
+            UseParticleFxAssetNextCall('core')
+            StartNetworkedParticleFxNonLoopedOnEntity('ent_amb_steam', prop, 0.0, 0.15, 0.0, -80.0, 0.0, 0.0, 0.4, false, false, false)
+            Wait(220)
+        end
+    end)
+end
+
+local function resolveTargetVehicle(opts)
+    opts = opts or {}
     local ped = PlayerPedId()
     local vehicle = GetVehiclePedIsIn(ped, false)
 
@@ -91,34 +131,42 @@ local function resolveTargetVehicle()
         return nil, 'tooFar'
     end
 
+    if not opts.ignoreFacing and not isFacingVehicle(ped, closest) then
+        return nil, 'notFacing'
+    end
+
     return closest, nil, false
 end
 
-local function sprayOutside(ped)
+local function sprayOutside(ped, vehicle, paintLabel, remover)
+    faceVehicle(ped, vehicle)
     local dict = 'switch@franklin@lamar_tagging_wall'
+    loadAnimDict(dict)
     sprayProp = attachSprayCan(ped)
-    playSpraySound()
 
-    local shook = progress({
-        duration = Config.ShakeDuration,
-        label = Config.Progress.shake,
-        useWhileDead = false,
-        canCancel = true,
-        disable = { car = true, combat = true, move = true },
-        anim = { dict = dict, clip = 'lamar_tagging_wall_loop_lamar', flag = 1 },
-    })
-
-    if not shook then
-        cleanupProp()
-        return false
+    if not remover then
+        playSpraySound()
+        local shook = progress({
+            duration = Config.ShakeDuration,
+            label = Config.Progress.shake,
+            useWhileDead = false,
+            canCancel = true,
+            disable = { car = true, combat = true, move = true },
+            anim = { dict = dict, clip = 'lamar_tagging_wall_loop_lamar', flag = 1 },
+        })
+        if not shook then
+            cleanupProp()
+            return false
+        end
+        ClearPedTasks(ped)
     end
 
-    ClearPedTasks(ped)
     playSpraySound()
+    playSprayParticles(sprayProp, remover and Config.RemoverDuration or Config.PaintDuration)
 
     local painted = progress({
-        duration = Config.PaintDuration,
-        label = Config.Progress.painting,
+        duration = remover and Config.RemoverDuration or Config.PaintDuration,
+        label = remover and Config.Progress.removing or (paintLabel or Config.Progress.painting),
         useWhileDead = false,
         canCancel = true,
         disable = { car = true, combat = true, move = true },
@@ -129,24 +177,21 @@ local function sprayOutside(ped)
     return painted
 end
 
-local function sprayInside()
+local function sprayInside(remover)
     playSpraySound()
     return progress({
-        duration = Config.InsideDuration,
-        label = Config.Progress.inside,
+        duration = remover and Config.RemoverDuration or Config.InsideDuration,
+        label = remover and Config.Progress.removing or Config.Progress.inside,
         useWhileDead = false,
         canCancel = true,
         disable = { combat = true, move = true },
     })
 end
 
-local function trySpray(paint, slot)
+local function runUse(opts)
+    opts = opts or {}
     if spraying then
         notify(Config.Notify.busy, 'error')
-        return
-    end
-    if not paint then
-        notify(Config.Notify.invalid, 'error')
         return
     end
 
@@ -159,9 +204,9 @@ local function trySpray(paint, slot)
     spraying = true
     local finished
     if inside then
-        finished = sprayInside()
+        finished = sprayInside(opts.remover)
     else
-        finished = sprayOutside(PlayerPedId())
+        finished = sprayOutside(PlayerPedId(), vehicle, opts.label, opts.remover)
     end
 
     if not finished then
@@ -170,8 +215,7 @@ local function trySpray(paint, slot)
         return
     end
 
-    -- Re-resolve in case they walked away / swapped seats during the progress bar.
-    vehicle, err = resolveTargetVehicle()
+    vehicle, err = resolveTargetVehicle({ ignoreFacing = true })
     if not vehicle then
         spraying = false
         notify(Config.Notify[err] or Config.Notify.tooFar, 'error')
@@ -180,21 +224,54 @@ local function trySpray(paint, slot)
 
     local netId = NetworkGetNetworkIdFromEntity(vehicle)
     local plate = TrimPlate(GetVehicleNumberPlateText(vehicle))
-    local color = GetPaintColorIndex(paint)
 
-    TriggerServerEvent('djfivem-spraypaint:server:apply', {
-        item = paint.item,
-        slot = slot and slot.slot or nil,
-        netId = netId,
-        plate = plate,
-        color = color,
-    })
+    if opts.remover then
+        TriggerServerEvent('djfivem-spraypaint:server:remove', {
+            item = Config.RemoverItem,
+            slot = opts.slot,
+            netId = netId,
+            plate = plate,
+        })
+    else
+        TriggerServerEvent('djfivem-spraypaint:server:apply', {
+            item = opts.item,
+            slot = opts.slot,
+            netId = netId,
+            plate = plate,
+            color = opts.color,
+        })
+    end
 
     spraying = false
 end
 
+local function trySpray(paint, slot)
+    if not paint then
+        notify(Config.Notify.invalid, 'error')
+        return
+    end
+    runUse({
+        item = paint.item,
+        slot = slot and slot.slot or nil,
+        color = GetPaintColorIndex(paint),
+        label = Config.Progress.painting,
+        remover = false,
+    })
+end
+
+local function tryRemove(slot)
+    runUse({
+        slot = slot and slot.slot or nil,
+        remover = true,
+    })
+end
+
 RegisterNetEvent('djfivem-spraypaint:client:use', function(itemName, slot)
     trySpray(GetPaintByItem(itemName), { slot = slot })
+end)
+
+RegisterNetEvent('djfivem-spraypaint:client:useRemover', function(slot)
+    tryRemove({ slot = slot })
 end)
 
 RegisterNetEvent('djfivem-spraypaint:client:applied', function(netId, color)
@@ -205,16 +282,26 @@ RegisterNetEvent('djfivem-spraypaint:client:applied', function(netId, color)
     notify(Config.Notify.success, 'success')
 end)
 
+RegisterNetEvent('djfivem-spraypaint:client:removed', function(netId, color)
+    local vehicle = NetToVeh(netId)
+    if vehicle and vehicle ~= 0 then
+        ApplyChameleonPaint(vehicle, color)
+    end
+    notify(Config.Notify.removed, 'success')
+end)
+
 RegisterNetEvent('djfivem-spraypaint:client:notify', function(message, nType)
     notify(message, nType)
 end)
 
--- ox_inventory client export used by install/ox_inventory_items.lua
 exports('chameleonpaint', function(data, slot)
     trySpray(GetPaintByItem(data and data.name), slot)
 end)
 
--- When hopping into a painted car, ask the server to restore from DB/KVP.
+exports('paintremover', function(_data, slot)
+    tryRemove(slot)
+end)
+
 CreateThread(function()
     local lastVehicle = 0
     while true do

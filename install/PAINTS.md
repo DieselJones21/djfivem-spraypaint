@@ -111,3 +111,9 @@
 | 240 | `chameleonpaint_240` | Anodized Lightning Spray |
 | 241 | `chameleonpaint_241` | Emeralds Spray |
 | 242 | `chameleonpaint_242` | Fubuki Castle Spray |
+
+## Donation tool
+
+| Item | Name |
+| --- | --- |
+| `dono_paint_remover` | Donation Paint Remover — face a vehicle and use to strip chameleon paint |

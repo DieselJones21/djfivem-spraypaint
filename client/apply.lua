@@ -61,7 +61,6 @@ local function applyFromState(entity, color)
 end
 
 AddStateBagChangeHandler('chameleonPaint', nil, function(bagName, _key, value)
-    if value == nil then return end
     local entity = GetEntityFromStateBagName(bagName)
     local timeout = GetGameTimer() + 5000
     while (entity == 0 or not DoesEntityExist(entity)) and GetGameTimer() < timeout do
@@ -69,6 +68,13 @@ AddStateBagChangeHandler('chameleonPaint', nil, function(bagName, _key, value)
         entity = GetEntityFromStateBagName(bagName)
     end
     if entity == 0 or not DoesEntityExist(entity) then return end
+
+    if value == nil or value == false then
+        applying[entity] = nil
+        ApplyChameleonPaint(entity, Config.RemoverDefaultPrimary or 0)
+        return
+    end
+
     applyFromState(entity, tonumber(value))
 end)
 
@@ -80,7 +86,7 @@ CreateThread(function()
             local vehicle = GetVehiclePedIsIn(PlayerPedId(), false)
             if vehicle ~= 0 then
                 local color = Entity(vehicle).state.chameleonPaint
-                if color and not VehicleHasColor(vehicle, color) then
+                if color and color ~= false and not VehicleHasColor(vehicle, color) then
                     ApplyChameleonPaint(vehicle, color)
                 end
             end
@@ -99,7 +105,7 @@ CreateThread(function()
                 local vehicle = vehicles[i]
                 if #(GetEntityCoords(vehicle) - pedCoords) <= 120.0 then
                     local color = Entity(vehicle).state.chameleonPaint
-                    if color and not VehicleHasColor(vehicle, color) then
+                    if color and color ~= false and not VehicleHasColor(vehicle, color) then
                         ApplyChameleonPaint(vehicle, color)
                     end
                 end

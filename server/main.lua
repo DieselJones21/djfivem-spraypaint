@@ -42,8 +42,11 @@ local function getItemCount(src, item)
     return 0
 end
 
-local function removeItem(src, item, slot)
-    if not Config.ConsumeOnSuccess then return true end
+local function removeItem(src, item, slot, consume)
+    if consume == nil then
+        consume = Config.ConsumeOnSuccess
+    end
+    if not consume then return true end
 
     if hasOxInventory() then
         return exports.ox_inventory:RemoveItem(src, item, 1, nil, slot) and true or false
@@ -134,7 +137,8 @@ local function vehicleNearPlayer(src, netId)
     if not vehicle or vehicle == 0 or not DoesEntityExist(vehicle) then return nil end
 
     local dist = #(GetEntityCoords(ped) - GetEntityCoords(vehicle))
-    if dist > 8.0 then return nil end
+    local maxDist = (Config.OutsideMaxDistance or 5.0) + 4.0
+    if dist > maxDist then return nil end
     return vehicle
 end
 
@@ -196,6 +200,58 @@ RegisterNetEvent('djfivem-spraypaint:server:apply', function(payload)
     debugPrint('saved', plate, expectedColor)
 end)
 
+RegisterNetEvent('djfivem-spraypaint:server:remove', function(payload)
+    local src = source
+    payload = payload or {}
+
+    local itemName = Config.RemoverItem or 'dono_paint_remover'
+    if payload.item and payload.item ~= itemName then
+        notify(src, Config.Notify.invalid, 'error')
+        return
+    end
+
+    if getItemCount(src, itemName) < 1 then
+        notify(src, Config.Notify.noItem, 'error')
+        return
+    end
+
+    local vehicle = vehicleNearPlayer(src, payload.netId)
+    if not vehicle then
+        notify(src, Config.Notify.tooFar, 'error')
+        return
+    end
+
+    local plate = TrimPlate(GetVehicleNumberPlateText(vehicle))
+    if plate == '' then
+        plate = TrimPlate(payload.plate)
+    end
+
+    if not PlayerOwnsVehicle(src, plate) then
+        notify(src, Config.Notify.notOwned, 'error')
+        return
+    end
+
+    local saved = GetSavedColor(plate)
+    local primary = GetVehicleColours(vehicle)
+    if not saved and (not primary or primary < 161) then
+        notify(src, Config.Notify.noPaint, 'error')
+        return
+    end
+
+    if not removeItem(src, itemName, payload.slot, Config.RemoverConsume) then
+        notify(src, Config.Notify.noItem, 'error')
+        return
+    end
+
+    ClearChameleonPaint(plate)
+    Entity(vehicle).state:set('chameleonPaint', false, true)
+
+    local netId = NetworkGetNetworkIdFromEntity(vehicle)
+    local defaultColor = Config.RemoverDefaultPrimary or 0
+    TriggerClientEvent('djfivem-spraypaint:client:removed', src, netId, defaultColor)
+    debugPrint('removed', plate)
+end)
+
 RegisterNetEvent('djfivem-spraypaint:server:request', function(netId, plate)
     local src = source
     local vehicle = NetworkGetEntityFromNetworkId(netId)
@@ -221,6 +277,9 @@ local function registerFrameworkUsables()
                 TriggerClientEvent('djfivem-spraypaint:client:use', source, paint.item, item and item.slot)
             end)
         end
+        QBCore.Functions.CreateUseableItem(Config.RemoverItem, function(source, item)
+            TriggerClientEvent('djfivem-spraypaint:client:useRemover', source, item and item.slot)
+        end)
         print('[djfivem-spraypaint] registered qb-core usable items')
     end
 
@@ -232,6 +291,9 @@ local function registerFrameworkUsables()
                 TriggerClientEvent('djfivem-spraypaint:client:use', source, paint.item)
             end)
         end
+        ESX.RegisterUsableItem(Config.RemoverItem, function(source)
+            TriggerClientEvent('djfivem-spraypaint:client:useRemover', source)
+        end)
         print('[djfivem-spraypaint] registered ESX usable items')
     end
 end
@@ -293,8 +355,34 @@ lib.addCommand('chameleonpaints', {
     end
 end)
 
+lib.addCommand('giveremover', {
+    help = 'Give the donation chameleon paint remover tool',
+    params = {
+        { name = 'target', type = 'playerId', optional = true, help = 'Player id (default: you)' },
+        { name = 'count', type = 'number', optional = true, help = 'Amount (default: 1)' },
+    },
+}, function(source, args)
+    if source ~= 0 and not isAdmin(source) then
+        notify(source, 'You cannot use this command.', 'error')
+        return
+    end
+
+    local target = args.target or source
+    if not target or target == 0 then
+        print('Specify a player id.')
+        return
+    end
+
+    if addItem(target, Config.RemoverItem, args.count or 1) then
+        notify(target, 'Received Donation Paint Remover', 'success')
+    else
+        notify(source ~= 0 and source or target, 'Could not give item. Check inventory.', 'error')
+    end
+end)
+
 exports('GetSavedColor', GetSavedColor)
 exports('SaveChameleonPaint', SaveChameleonPaint)
+exports('ClearChameleonPaint', ClearChameleonPaint)
 exports('GetPaints', function()
     return ChameleonPaints
 end)

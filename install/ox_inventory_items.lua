@@ -7,7 +7,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #161. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #161. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_161.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -19,7 +19,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #162. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #162. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_162.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -31,7 +31,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #163. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #163. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_163.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -43,7 +43,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #164. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #164. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_164.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -55,7 +55,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #165. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #165. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_165.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -67,7 +67,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #166. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #166. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_166.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -79,7 +79,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #167. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #167. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_167.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -91,7 +91,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #168. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #168. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_168.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -103,7 +103,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #169. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #169. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_169.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -115,7 +115,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #170. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #170. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_170.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -127,7 +127,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #171. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #171. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_171.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -139,7 +139,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #172. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #172. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_172.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -151,7 +151,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #173. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #173. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_173.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -163,7 +163,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #174. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #174. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_174.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -175,7 +175,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #175. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #175. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_175.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -187,7 +187,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #176. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #176. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_176.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -199,7 +199,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #177. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #177. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_177.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -211,7 +211,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #178. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #178. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_178.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -223,7 +223,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #179. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #179. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_179.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -235,7 +235,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #180. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #180. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_180.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -247,7 +247,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #181. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #181. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_181.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -259,7 +259,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #182. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #182. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_182.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -271,7 +271,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #183. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #183. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_183.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -283,7 +283,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #184. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #184. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_184.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -295,7 +295,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #185. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #185. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_185.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -307,7 +307,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #186. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #186. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_186.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -319,7 +319,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #187. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #187. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_187.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -331,7 +331,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #188. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #188. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_188.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -343,7 +343,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #189. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #189. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_189.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -355,7 +355,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #190. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #190. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_190.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -367,7 +367,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #191. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #191. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_191.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -379,7 +379,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #192. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #192. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_192.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -391,7 +391,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #193. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #193. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_193.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -403,7 +403,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #194. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #194. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_194.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -415,7 +415,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #195. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #195. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_195.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -427,7 +427,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #196. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #196. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_196.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -439,7 +439,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #197. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #197. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_197.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -451,7 +451,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #198. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #198. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_198.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -463,7 +463,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #199. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #199. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_199.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -475,7 +475,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #200. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #200. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_200.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -487,7 +487,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #201. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #201. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_201.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -499,7 +499,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #202. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #202. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_202.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -511,7 +511,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #203. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #203. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_203.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -523,7 +523,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #204. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #204. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_204.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -535,7 +535,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #205. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #205. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_205.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -547,7 +547,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #206. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #206. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_206.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -559,7 +559,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #207. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #207. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_207.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -571,7 +571,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #208. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #208. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_208.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -583,7 +583,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #209. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #209. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_209.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -595,7 +595,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #210. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #210. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_210.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -607,7 +607,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #211. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #211. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_211.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -619,7 +619,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #212. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #212. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_212.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -631,7 +631,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #213. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #213. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_213.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -643,7 +643,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #214. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #214. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_214.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -655,7 +655,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #215. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #215. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_215.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -667,7 +667,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #216. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #216. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_216.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -679,7 +679,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #217. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #217. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_217.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -691,7 +691,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #218. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #218. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_218.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -703,7 +703,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #219. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #219. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_219.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -715,7 +715,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #220. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #220. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_220.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -727,7 +727,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #221. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #221. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_221.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -739,7 +739,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #222. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #222. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_222.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -751,7 +751,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #223. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #223. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_223.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -763,7 +763,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #224. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #224. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_224.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -775,7 +775,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #225. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #225. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_225.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -787,7 +787,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #226. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #226. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_226.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -799,7 +799,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #227. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #227. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_227.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -811,7 +811,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #228. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #228. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_228.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -823,7 +823,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #229. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #229. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_229.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -835,7 +835,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #230. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #230. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_230.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -847,7 +847,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #231. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #231. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_231.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -859,7 +859,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #232. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #232. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_232.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -871,7 +871,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #233. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #233. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_233.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -883,7 +883,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #234. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #234. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_234.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -895,7 +895,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #235. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #235. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_235.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -907,7 +907,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #236. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #236. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_236.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -919,7 +919,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #237. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #237. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_237.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -931,7 +931,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #238. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #238. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_238.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -943,7 +943,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #239. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #239. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_239.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -955,7 +955,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #240. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #240. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_240.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -967,7 +967,7 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #241. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #241. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_241.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
@@ -979,9 +979,21 @@
 		stack = true,
 		close = true,
 		consume = 0,
-		description = 'Chameleon spray #242. Use in a vehicle to paint it. Paint is saved.',
+		description = 'Chameleon spray #242. Stand outside, face the vehicle, then use it. Paint is saved.',
 		client = {
 			image = 'chameleonpaint_242.png',
 			export = 'djfivem-spraypaint.chameleonpaint',
+		},
+	},
+	['dono_paint_remover'] = {
+		label = 'Donation Paint Remover',
+		weight = 1,
+		stack = true,
+		close = true,
+		consume = 0,
+		description = 'Donor tool. Stand outside, face a vehicle, and use it to strip chameleon paint.',
+		client = {
+			image = 'dono_paint_remover.png',
+			export = 'djfivem-spraypaint.paintremover',
 		},
 	},

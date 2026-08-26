@@ -1,14 +1,14 @@
 # djfivem-spraypaint
 
-Numbered chameleon spray-paint items for FiveM. Sit in a car, use the item, and the colour is saved so it does not disappear after a garage pull-out or server restart.
+Numbered chameleon spray-paint items for FiveM. Stand **outside a vehicle, face it, and use the spray** — a spray-can prop is attached. The colour is saved so it does not disappear after a garage pull-out or server restart.
 
 Includes **all 82 colours** from the [GTA5-Mods Chameleon Paint](https://www.gta5-mods.com/misc/chameleon-paint-add-on) pack (62 official Rockstar + 20 custom YKTA), with spray-can animation from [Testaross/chameleonpaint](https://github.com/Testaross/chameleonpaint).
 
 ## What you get
 
 - **82 numbered items:** `chameleonpaint_161` through `chameleonpaint_242` (the number is the GTA colour)
-- Use the item **in a vehicle** (driver seat) or standing next to a car
-- Spray-can prop, shake/paint progress bar, and spray sound
+- Use the item **outside**, facing the vehicle (spray-can prop + shake/spray anim). Driver-seat use still works.
+- **Donation paint remover** item `dono_paint_remover` — same face-and-spray flow, strips chameleon paint and saves that
 - Paint is stored by plate (SQL + resource KVP + your garage `mods` / `vehicle` JSON)
 - Colour is re-applied when the vehicle spawns so garage scripts cannot wipe it
 - ox_inventory (primary), qb-core, and ESX item support
@@ -71,10 +71,12 @@ Run `install/esx_items.sql`.
 ## How to use in-game
 
 1. Give yourself a spray: `/givechameleon 161` (Anodized Red) or `/givechameleon 223` (Monochrome).
-2. Get in a vehicle as the driver.
-3. Use the item from inventory.
-4. After the progress bar, the car is chameleon-painted.
+2. Get **out** of the vehicle, stand close, and **face** it.
+3. Use the item. A spray-can prop is attached; shake, then spray.
+4. The car is chameleon-painted and the colour is saved.
 5. Store it in the garage and take it out — the paint should still be there.
+
+To strip paint (donation tool): `/giveremover`, face the vehicle, use `dono_paint_remover`. By default the tool is reusable (`Config.RemoverConsume = false`).
 
 `/chameleonpaints` prints every numbered spray to the server console.
 
@@ -82,9 +84,11 @@ Run `install/esx_items.sql`.
 
 Edit `config.lua`:
 
-- `AllowInsideVehicle` / `AllowOutsideVehicle` — paint from the seat, from outside, or both
+- `AllowOutsideVehicle` / `RequireFacingVehicle` / `FacingMaxAngle` — must look at the car to spray it
+- `AllowInsideVehicle` — also allow spraying from the driver seat
+- `RemoverItem` / `RemoverConsume` / `RemoverDefaultPrimary` — donation paint remover
 - `RequireOwnedVehicle = true` — only owned personal vehicles
-- `ConsumeOnSuccess` — item is removed only if the paint actually applied
+- `ConsumeOnSuccess` — spray can is removed only if the paint actually applied
 - `KeepApplying` — keep restoring the colour so it cannot be wiped
 
 ## Why paint used to disappear
@@ -103,6 +107,7 @@ This resource:
 | Command | Who | What |
 | --- | --- | --- |
 | `/givechameleon [161-242] [id] [count]` | admin | Give a numbered spray |
+| `/giveremover [id] [count]` | admin | Give the donation paint remover |
 | `/chameleonpaints` | anyone | Print all 82 sprays to the server console |
 
 ## Exports
@@ -110,14 +115,15 @@ This resource:
 ```lua
 exports['djfivem-spraypaint']:GetPaints()
 exports['djfivem-spraypaint']:GetSavedColor(plate)
-exports['djfivem-spraypaint']:SaveChameleonPaint(plate, colorIndex)
+exports['djfivem-spraypaint']:ClearChameleonPaint(plate)
 ```
 
 ## Troubleshooting
 
 - **161–222 look black:** set `sv_enforceGameBuild 2699` (or higher) and restart. Those 62 colours are built into that game build.
 - **223–242 look black:** confirm `data/` + `stream/vehicle_paint_ramps.ytd` are present and this resource starts before you join.
-- **Item does nothing:** items were not added to ox_inventory/qb-core, or the resource folder was renamed (update the `export = 'djfivem-spraypaint.chameleonpaint'` line).
+- **Item does nothing:** items were not added to ox_inventory/qb-core, or you are not facing the vehicle (walk around until you look at it).
+- **Remover does nothing:** add `dono_paint_remover` from `install/ox_inventory_items.lua` and copy `dono_paint_remover.png`.
 - **Paint vanishes in garage:** import `sql/install.sql`, start `oxmysql` before this resource, and keep `Config.KeepApplying = true`.
 - **Sound missing:** this resource plays `html/spraypaint.ogg` itself. You do **not** need to move it to InteractSound.
 

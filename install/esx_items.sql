@@ -82,5 +82,6 @@ INSERT INTO `items` (`name`, `label`, `weight`, `rare`, `can_remove`) VALUES
 ('chameleonpaint_239', '#239 HSW Badge Spray', 1, 0, 1),
 ('chameleonpaint_240', '#240 Anodized Lightning Spray', 1, 0, 1),
 ('chameleonpaint_241', '#241 Emeralds Spray', 1, 0, 1),
-('chameleonpaint_242', '#242 Fubuki Castle Spray', 1, 0, 1)
+('chameleonpaint_242', '#242 Fubuki Castle Spray', 1, 0, 1),
+('dono_paint_remover', 'Donation Paint Remover', 1, 0, 1)
 ON DUPLICATE KEY UPDATE `label` = VALUES(`label`);
