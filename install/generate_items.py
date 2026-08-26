@@ -4,10 +4,8 @@
 from __future__ import annotations
 
 from pathlib import Path
-import shutil
 
 ROOT = Path(__file__).resolve().parents[1]
-ICON = ROOT / "html" / "chameleonpaint.png"
 
 # GTA5-Mods Chameleon Paint 2.0 (Wildbrick142): 62 Rockstar + 20 custom = 82
 # Colour index == item number on gamebuild 2699+.
@@ -274,12 +272,12 @@ def write_paints_md() -> None:
 
 
 def copy_icons() -> None:
-    dest_dir = ROOT / "install" / "ox_inventory_images"
-    dest_dir.mkdir(parents=True, exist_ok=True)
-    shutil.copyfile(ICON, dest_dir / "chameleonpaint.png")
-    shutil.copyfile(ICON, dest_dir / "dono_paint_remover.png")
-    for number, *_ in PAINTS:
-        shutil.copyfile(ICON, dest_dir / f"{item_name(number)}.png")
+    import sys
+
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from generate_icons import generate
+
+    generate()
 
 
 def main() -> None:

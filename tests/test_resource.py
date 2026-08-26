@@ -86,6 +86,11 @@ def test_item_files_match_catalog():
         assert paint["item"] in catalog
         image = ROOT / "install" / "ox_inventory_images" / f"{paint['item']}.png"
         assert image.is_file() and image.stat().st_size > 0
+    hashes = {
+        (ROOT / "install" / "ox_inventory_images" / f"{paint['item']}.png").read_bytes()
+        for paint in paints
+    }
+    assert len(hashes) == 82, f"expected unique icons, got {len(hashes)}"
     assert "export = 'djfivem-spraypaint.chameleonpaint'" in ox
     assert "consume = 0" in ox
     assert "chameleonpaint_161" in readme

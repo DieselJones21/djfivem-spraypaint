@@ -52,7 +52,7 @@ ensure djfivem-spraypaint
 
 Copy every `['chameleonpaint_xxx']` block from `install/ox_inventory_items.lua` into `ox_inventory/data/items.lua`.
 
-Copy `install/ox_inventory_images/*.png` into `ox_inventory/web/images/`.
+Copy `install/ox_inventory_images/*.png` into `ox_inventory/web/images/`. Each spray has its own icon that shows that colour (preview sheet: `install/icon_sheet.png`).
 
 Restart `ox_inventory`.
 
