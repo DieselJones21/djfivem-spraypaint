@@ -4,7 +4,7 @@ lua54 'yes'
 
 name 'djfivem-spraypaint'
 author 'DieselJones21'
-description 'Numbered chameleon spray-paint items that persist on vehicles'
+description '82 chameleon sprays, outside facing spray-can, and donation paint remover'
 version '1.0.0'
 
 --[[

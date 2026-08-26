@@ -12,11 +12,11 @@ ROOT = Path(__file__).resolve().parents[1]
 def parse_paints() -> list[dict]:
     text = (ROOT / "shared" / "paints.lua").read_text(encoding="utf-8")
     pattern = re.compile(
-        r"\{\s*item\s*=\s*'([^']+)'\s*,\s*number\s*=\s*(\d+)\s*,\s*color\s*=\s*(\d+)\s*,\s*label\s*=\s*'([^']+)'\s*,\s*code\s*=\s*'([^']+)'\s*\}",
+        r"\{\s*item\s*=\s*'([^']+)'\s*,\s*number\s*=\s*(\d+)\s*,\s*color\s*=\s*(\d+)\s*,\s*label\s*=\s*'([^']+)'\s*,\s*code\s*=\s*'([^']+)'(?:\s*,\s*category\s*=\s*'([^']+)')?\s*\}",
         re.MULTILINE,
     )
     paints = []
-    for item, number, color, label, code in pattern.findall(text):
+    for item, number, color, label, code, category in pattern.findall(text):
         paints.append(
             {
                 "item": item,
@@ -24,6 +24,7 @@ def parse_paints() -> list[dict]:
                 "color": int(color),
                 "label": label,
                 "code": code,
+                "category": category or "",
             }
         )
     return paints
@@ -45,18 +46,30 @@ def display_item_label(paint: dict) -> str:
 
 def test_paint_catalog():
     paints = parse_paints()
-    assert len(paints) == 16, f"expected 16 paints, got {len(paints)}"
+    assert len(paints) == 82, f"expected 82 paints, got {len(paints)}"
     numbers = [p["number"] for p in paints]
     colors = [p["color"] for p in paints]
     items = [p["item"] for p in paints]
-    assert numbers == list(range(161, 177))
-    assert colors == list(range(223, 239))
-    assert items == [f"chameleonpaint_{n}" for n in range(161, 177)]
-    assert len(set(items)) == 16
-    assert len(set(colors)) == 16
-    assert paints[0]["label"] == "Monochrome Spray"
-    assert paints[-1]["label"] == "Temperature Spray"
-    assert paints[4]["label"] == "Vice City Spray"
+    assert numbers == list(range(161, 243))
+    assert colors == numbers
+    assert items == [f"chameleonpaint_{n}" for n in range(161, 243)]
+    assert len(set(items)) == 82
+    assert paints[0]["label"] == "Anodized Red Pearl"
+    assert paints[0]["code"] == "ANOD_RED"
+    assert paints[62]["number"] == 223
+    assert paints[62]["label"] == "Monochrome Spray"
+    assert paints[-1]["label"] == "Fubuki Castle Spray"
+    assert paints[-1]["number"] == 242
+    by_cat = {}
+    for paint in paints:
+        by_cat.setdefault(paint["category"], 0)
+        by_cat[paint["category"]] += 1
+    assert by_cat["anodized"] == 10
+    assert by_cat["flip"] == 25
+    assert by_cat["pearl"] == 15
+    assert by_cat["prisma"] == 10
+    assert by_cat["holo"] == 2
+    assert by_cat["ykta"] == 20
 
 
 def test_item_files_match_catalog():
@@ -65,16 +78,24 @@ def test_item_files_match_catalog():
     qb = (ROOT / "install" / "qb-core_items.lua").read_text(encoding="utf-8")
     esx = (ROOT / "install" / "esx_items.sql").read_text(encoding="utf-8")
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    catalog = (ROOT / "install" / "PAINTS.md").read_text(encoding="utf-8")
     for paint in paints:
         assert f"['{paint['item']}']" in ox
-        assert f"export = 'djfivem-spraypaint.chameleonpaint'" in ox
-        assert "consume = 0" in ox
-        assert f"#{paint['number']}" in ox
         assert paint["item"] in qb
         assert paint["item"] in esx
-        assert paint["item"] in readme
+        assert paint["item"] in catalog
         image = ROOT / "install" / "ox_inventory_images" / f"{paint['item']}.png"
         assert image.is_file() and image.stat().st_size > 0
+    hashes = {
+        (ROOT / "install" / "ox_inventory_images" / f"{paint['item']}.png").read_bytes()
+        for paint in paints
+    }
+    assert len(hashes) == 82, f"expected unique icons, got {len(hashes)}"
+    assert "export = 'djfivem-spraypaint.chameleonpaint'" in ox
+    assert "consume = 0" in ox
+    assert "chameleonpaint_161" in readme
+    assert "chameleonpaint_242" in readme
+    assert "82" in readme
 
 
 def test_stream_and_meta_assets():
@@ -92,8 +113,14 @@ def test_stream_and_meta_assets():
         assert path.is_file() and path.stat().st_size > 0, path
 
     carcols = (ROOT / "data" / "carcols_gen9.meta").read_text(encoding="utf-8")
-    assert carcols.count("<rampTextureName>") == 16
-    assert "vehicle_paint_ramps_01" in carcols
+    assert carcols.count("<rampTextureName>") == 20
+    assert "vehicle_paint_ramp_fubuki001" in carcols
+    assert "vehicle_paint_ramp_fubuki020" in carcols
+    assert (ROOT / "stream" / "vehicle_paint_ramps.ytd").stat().st_size > 100000
+
+    mods = (ROOT / "data" / "carmodcols_gen9.meta").read_text(encoding="utf-8")
+    assert 'col value="223"' in mods
+    assert 'col value="242"' in mods
 
     fx = (ROOT / "fxmanifest.lua").read_text(encoding="utf-8")
     for name in (
@@ -120,9 +147,10 @@ def test_color_mode_mapping():
     paints = parse_paints()
     paint = paints[0]
     assert paint["number"] == 161
-    assert paint["color"] == 223
-    # Config.UseLegacyIndexes = false -> 223; true -> 161
-    assert paint["color"] != paint["number"]
+    assert paint["color"] == 161
+    mono = next(p for p in paints if p["number"] == 223)
+    assert mono["color"] == 223
+    assert mono["label"] == "Monochrome Spray"
 
 
 def test_persistence_sql():
@@ -138,14 +166,68 @@ def test_persistence_sql():
     assert "ClearVehicleCustomPrimaryColour" in apply
     assert "SetVehicleColours" in apply
     client = (ROOT / "client" / "main.lua").read_text(encoding="utf-8")
-    assert "AllowInsideVehicle" in client
+    assert "AllowOutsideVehicle" in client
     assert "exports('chameleonpaint'" in client
+    server = (ROOT / "server" / "main.lua").read_text(encoding="utf-8")
+    assert "161-242" in server
+
+
+def test_facing_math():
+    import math
+
+    def heading_dot(heading, from_x, from_y, to_x, to_y):
+        rad = math.radians(heading)
+        fx = -math.sin(rad)
+        fy = math.cos(rad)
+        dx, dy = to_x - from_x, to_y - from_y
+        length = math.hypot(dx, dy)
+        if length < 0.001:
+            return 1.0
+        return (fx * dx / length) + (fy * dy / length)
+
+    def is_facing(heading, from_x, from_y, to_x, to_y, max_angle=70):
+        return heading_dot(heading, from_x, from_y, to_x, to_y) >= math.cos(math.radians(max_angle))
+
+    assert heading_dot(0, 0, 0, 0, 10) > 0.99
+    assert abs(heading_dot(0, 0, 0, 10, 0)) < 0.01
+    assert is_facing(0, 0, 0, 0, 10, 70) is True
+    assert is_facing(0, 0, 0, 10, 0, 70) is False
+    assert is_facing(180, 0, 10, 0, 0, 70) is True
+    utils = (ROOT / "shared" / "utils.lua").read_text(encoding="utf-8")
+    assert "function IsFacingTarget" in utils
+    assert "function HeadingDotToTarget" in utils
+
+
+def test_remover_and_outside_spray():
+    ox = (ROOT / "install" / "ox_inventory_items.lua").read_text(encoding="utf-8")
+    qb = (ROOT / "install" / "qb-core_items.lua").read_text(encoding="utf-8")
+    esx = (ROOT / "install" / "esx_items.sql").read_text(encoding="utf-8")
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    config = (ROOT / "config.lua").read_text(encoding="utf-8")
+    client = (ROOT / "client" / "main.lua").read_text(encoding="utf-8")
+    persist = (ROOT / "server" / "persist.lua").read_text(encoding="utf-8")
+    server = (ROOT / "server" / "main.lua").read_text(encoding="utf-8")
+    assert ox.count("['dono_paint_remover']") == 1
+    assert "djfivem-spraypaint.paintremover" in ox
+    assert "dono_paint_remover" in qb
+    assert "dono_paint_remover" in esx
+    assert "dono_paint_remover" in readme
+    image = ROOT / "install" / "ox_inventory_images" / "dono_paint_remover.png"
+    assert image.is_file() and image.stat().st_size > 0
+    assert "RequireFacingVehicle" in config
+    assert "prop_cs_spray_can" in client
+    assert "notFacing" in client
+    assert "exports('paintremover'" in client
+    assert "ClearChameleonPaint" in persist
+    assert "djfivem-spraypaint:server:remove" in server
+    assert "giveremover" in server
 
 
 def test_labels():
     paints = parse_paints()
-    assert display_item_label(paints[0]) == "#161 Monochrome Spray"
-    assert display_item_label(paints[9]) == "#170 Full Rainbow Spray"
+    assert display_item_label(paints[0]) == "#161 Anodized Red Pearl"
+    full_rainbow = next(p for p in paints if p["number"] == 232)
+    assert display_item_label(full_rainbow) == "#232 Full Rainbow Spray"
 
 
 def main():
@@ -157,6 +239,8 @@ def main():
         test_color_mode_mapping,
         test_persistence_sql,
         test_labels,
+        test_facing_math,
+        test_remover_and_outside_spray,
     ]
     for test in tests:
         test()
